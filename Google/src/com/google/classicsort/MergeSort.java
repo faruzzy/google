@@ -1,4 +1,4 @@
-package com.google.sort;
+package com.google.classicsort;
 
 import java.util.Arrays;
 
