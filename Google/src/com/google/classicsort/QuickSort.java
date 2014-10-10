@@ -3,7 +3,7 @@ package com.google.classicsort;
 import java.util.Arrays;
 
 /**
- * Quick Sort (sorta...)
+ * Quick Sort
  *
  * @author Matthew Robertson
  */
@@ -16,14 +16,12 @@ public class QuickSort {
 	}
 
 	public static void main(final String... args) {
-		for (int i = 0; i < 30; ++i) {
-			final int length = 10;
-			final QuickSort quickSort = new QuickSort(randomData(length));
-			System.out.println(quickSort);
-			quickSort.sort();
-			System.out.println(quickSort);
-			System.out.println("***");
-		}
+		final int length = 10;
+		final int[] data = randomData(length);
+		final QuickSort quickSort = new QuickSort(data);
+		System.out.println(quickSort);
+		quickSort.sort();
+		System.out.println(quickSort);
 	}
 
 	private static int pickPivot(final int a, final int b) {
@@ -33,9 +31,9 @@ public class QuickSort {
 	private static int[] randomData(final int length) {
 		final int[] data = new int[length];
 		for (int i = 0; i < length; ++i) {
-			final int rnd = (int) ((i + 1) * Math.random());
-			data[i] = data[rnd];
-			data[rnd] = i;
+			final int r = (int) ((i + 1) * Math.random());
+			data[i] = data[r];
+			data[r] = i;
 		}
 		return data;
 	}
@@ -49,48 +47,48 @@ public class QuickSort {
 		return Arrays.toString(data);
 	}
 
-	private int partition(final int p, final int a, final int b) {
+	private int partition(final int a, final int b, final int p) {
+		final int value = data[p];
 		swap(p, a);
+
 		int i = a + 1;
 		int j = b;
 
 		for (;;) {
-			while (i < j && data[i] < data[a])
+			while (data[i] < value) {
+				if (i == j) {
+					System.out.println("i met j at " + i);
+					return i;
+				}
 				i++;
-			if (i == j)
-				break;
-			while (i < j && data[j] > data[a])
+			}
+			while (data[j] > value) {
+				if (i == j) {
+					System.out.println("j met i at " + i);
+					return i;
+				}
 				j--;
-			if (i == j)
-				break;
+			}
 			swap(i, j);
+			System.out.println("swaped " + i + " and " + j + " to get " + toString() + " for pivot " + value);
 		}
-		swap(a, i - 1);
-		return i - 1;
 	}
 
 	private void sort(final int a, final int b) {
-		if (a >= b)
+		if (b - a < 2)
 			return;
-
-		if (b - a == 1) {
-			if (data[a] > data[b])
-				swap(a, b);
-			return;
-		}
 
 		final int p = pickPivot(a, b);
-		final int i = partition(p, a, b);
-		sort(a, i);
-		sort(i + 1, b);
+		final int i = partition(a, b, p);
+
+		// sort(a, i - 1);
+		// sort(i + 1, b);
 	}
 
 	private void swap(final int i, final int j) {
-		if (i != j) {
-			final int temp = data[i];
-			data[i] = data[j];
-			data[j] = temp;
-		}
+		final int t = data[i];
+		data[i] = data[j];
+		data[j] = t;
 	}
 
 }
