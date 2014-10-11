@@ -80,6 +80,8 @@ public class QuickSort {
 
 		final int p = pickPivot(a, b);
 		final int i = partition(a, b, p);
+		if (i == 0)
+			return;
 
 		// sort(a, i - 1);
 		// sort(i + 1, b);
