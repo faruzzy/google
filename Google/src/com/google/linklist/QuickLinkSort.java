@@ -1,4 +1,4 @@
-package com.google.linklistsort;
+package com.google.linklist;
 
 /**
  * Sort a linked list using Quick Sort

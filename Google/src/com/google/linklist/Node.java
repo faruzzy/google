@@ -1,4 +1,4 @@
-package com.google.linklistsort;
+package com.google.linklist;
 
 public class Node {
 

@@ -1,96 +1,56 @@
 package com.google.classicsort;
 
-import java.util.Arrays;
+public class QuickSort implements SortingAlgorithm {
 
-/**
- * Quick Sort
- *
- * @author Matthew Robertson
- */
-public class QuickSort {
+	private int[] data;
 
-	private final int[] data;
-
-	public QuickSort(final int... data) {
-		this.data = data;
+	private static int choosePivot(final int left, final int right) {
+		return left + (int) ((right - left + 1) * Math.random());
 	}
 
-	public static void main(final String... args) {
-		final int length = 10;
-		final int[] data = randomData(length);
-		final QuickSort quickSort = new QuickSort(data);
-		System.out.println(quickSort);
-		quickSort.sort();
-		System.out.println(quickSort);
-	}
+	public int partition(final int left, final int right, final int pivot) {
+		final int value = data[pivot];
+		swap(pivot, right);
 
-	private static int pickPivot(final int a, final int b) {
-		return a + 0 * (int) ((b - a + 1) * Math.random());
-	}
+		int index = left;
+		for (int i = left; i < right; ++i)
+			if (data[i] < value)
+				swap(i, index++);
+		swap(index, right);
 
-	private static int[] randomData(final int length) {
-		final int[] data = new int[length];
-		for (int i = 0; i < length; ++i) {
-			final int r = (int) ((i + 1) * Math.random());
-			data[i] = data[r];
-			data[r] = i;
-		}
-		return data;
-	}
-
-	public void sort() {
-		sort(0, data.length - 1);
+		return index;
 	}
 
 	@Override
-	public String toString() {
-		return Arrays.toString(data);
+	public int[] sort(@SuppressWarnings("hiding") final int... data) {
+		this.data = data;
+		sort(0, data.length - 1);
+		return data;
 	}
 
-	private int partition(final int a, final int b, final int p) {
-		final int value = data[p];
-		swap(p, a);
-
-		int i = a + 1;
-		int j = b;
-
-		for (;;) {
-			while (data[i] < value) {
-				if (i == j) {
-					System.out.println("i met j at " + i);
-					return i;
-				}
-				i++;
-			}
-			while (data[j] > value) {
-				if (i == j) {
-					System.out.println("j met i at " + i);
-					return i;
-				}
-				j--;
-			}
-			swap(i, j);
-			System.out.println("swaped " + i + " and " + j + " to get " + toString() + " for pivot " + value);
+	private void sort(final int left, final int right) {
+		if (right - left < 1)
+			return;
+		
+		if (left + 1 == right) {
+			if (data[right] < data[left])
+				swap(left, right);
+			return;
 		}
-	}
 
-	private void sort(final int a, final int b) {
-		if (b - a < 2)
-			return;
+		final int pivot = choosePivot(left, right);
+		final int index = partition(left, right, pivot);
 
-		final int p = pickPivot(a, b);
-		final int i = partition(a, b, p);
-		if (i == 0)
-			return;
-
-		// sort(a, i - 1);
-		// sort(i + 1, b);
+		sort(left, index - 1);
+		sort(index + 1, right);
 	}
 
 	private void swap(final int i, final int j) {
-		final int t = data[i];
-		data[i] = data[j];
-		data[j] = t;
+		if (i != j) {
+			final int t = data[i];
+			data[i] = data[j];
+			data[j] = t;
+		}
 	}
 
 }

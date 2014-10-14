@@ -1,6 +1,6 @@
-package com.google.linklistsort;
+package com.google.linklist;
 
-public class SortLinkedList {
+public class TestQuickLinkSort {
 
 	public static boolean isSorted(final Node head) {
 		Node cur = head;
@@ -13,10 +13,6 @@ public class SortLinkedList {
 		return true;
 	}
 
-	public static void main(final String... args) {
-		testSort();
-	}
-
 	public static int[] randomData(final int length) {
 		final int[] data = new int[length];
 		for (int i = 0; i < length; ++i) {
@@ -27,7 +23,7 @@ public class SortLinkedList {
 		return data;
 	}
 
-	public static void testSort() {
+	public static void test() {
 		for (int length = 10; length < 10000001; length *= 10) {
 			Node head = toLinkedList(randomData(length));
 			head = QuickLinkSort.sort(head);
