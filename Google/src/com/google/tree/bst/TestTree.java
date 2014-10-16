@@ -1,28 +1,23 @@
 package com.google.tree.bst;
 
-public class AVLTree<T extends Comparable<T>> implements BinarySearchTree<T> {
+public class TestTree<T extends Comparable<T>> implements BinarySearchTree<T> {
 
-	private AVLNode root;
+	private class TestNode extends Node<T> {
 
-	private class AVLNode extends Node<T> {
+		private TestNode left, right;
 
-		private AVLNode left, right;
-		private int visits;
-
-		public AVLNode(final T value) {
+		public TestNode(final T value) {
 			super(value);
 
 			left = null;
 			right = null;
-
-			visits = -1;
 		}
 
-		public AVLNode getLeft() {
+		public TestNode getLeft() {
 			return left;
 		}
 
-		public AVLNode getRight() {
+		public TestNode getRight() {
 			return right;
 		}
 
@@ -34,21 +29,19 @@ public class AVLTree<T extends Comparable<T>> implements BinarySearchTree<T> {
 			return right != null;
 		}
 
-		public void setLeft(final AVLNode left) {
+		public void setLeft(final TestNode left) {
 			this.left = left;
 		}
 
-		public void setRight(final AVLNode right) {
+		public void setRight(final TestNode right) {
 			this.right = right;
-		}
-
-		public int visit() {
-			return visits = (visits + 1) % 3 + 1;
 		}
 
 	}
 
-	public AVLTree() {
+	private TestNode root;
+
+	public TestTree() {
 		makeEmpty();
 	}
 
@@ -89,8 +82,8 @@ public class AVLTree<T extends Comparable<T>> implements BinarySearchTree<T> {
 
 	@Override
 	public void remove(final T value) {
-		AVLNode node = root;
-		AVLNode parent = null;
+		TestNode node = root;
+		TestNode parent = null;
 		boolean leftChild = false;
 		while (node != null) {
 			final int compare = node.getValue().compareTo(value);
@@ -109,7 +102,7 @@ public class AVLTree<T extends Comparable<T>> implements BinarySearchTree<T> {
 		if (node == null)
 			return;
 
-		AVLNode subtree = node.getRight();
+		TestNode subtree = node.getRight();
 		if (subtree == null)
 			subtree = node.getLeft();
 		else
@@ -123,8 +116,8 @@ public class AVLTree<T extends Comparable<T>> implements BinarySearchTree<T> {
 			parent.setRight(subtree);
 	}
 
-	private AVLNode find(final T value, @SuppressWarnings("hiding") final AVLNode root) {
-		AVLNode node = root;
+	private TestNode find(final T value, @SuppressWarnings("hiding") final TestNode root) {
+		TestNode node = root;
 
 		while (node != null) {
 			final int compare = node.getValue().compareTo(value);
@@ -140,26 +133,26 @@ public class AVLTree<T extends Comparable<T>> implements BinarySearchTree<T> {
 	}
 
 	@SuppressWarnings("static-method")
-	private AVLNode findMax(@SuppressWarnings("hiding") final AVLNode root) {
+	private TestNode findMax(@SuppressWarnings("hiding") final TestNode root) {
 		assert root != null;
-		AVLNode node = root;
+		TestNode node = root;
 		while (node.hasRight())
 			node = node.getRight();
 		return node;
 	}
 
 	@SuppressWarnings("static-method")
-	private AVLNode findMin(@SuppressWarnings("hiding") final AVLNode root) {
+	private TestNode findMin(@SuppressWarnings("hiding") final TestNode root) {
 		assert root != null;
-		AVLNode node = root;
+		TestNode node = root;
 		while (node.hasLeft())
 			node = node.getLeft();
 		return node;
 	}
 
-	private AVLNode insert(final T value, @SuppressWarnings("hiding") final AVLNode root) {
+	private TestNode insert(final T value, @SuppressWarnings("hiding") final TestNode root) {
 		if (root == null)
-			return new AVLNode(value);
+			return new TestNode(value);
 
 		final int compare = root.getValue().compareTo(value);
 
@@ -171,7 +164,7 @@ public class AVLTree<T extends Comparable<T>> implements BinarySearchTree<T> {
 		return root;
 	}
 
-	private void visit(@SuppressWarnings("hiding") final AVLNode root) {
+	private void visit(@SuppressWarnings("hiding") final TestNode root) {
 		if (root == null)
 			return;
 
