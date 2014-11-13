@@ -1,9 +1,9 @@
-package com.google.graph;
+package com.google.ds;
 
 public class Driver {
 
 	public static void main(final String... args) {
-		TestGraph.test(new MatrixGraph());
+
 	}
 
 }
