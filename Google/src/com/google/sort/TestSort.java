@@ -1,6 +1,6 @@
 package com.google.sort;
 
-public class Test {
+public class TestSort {
 
 	public static boolean isSorted(final SortingAlgorithm sortingAlgorithm) {
 		final int[] data = sortingAlgorithm.getData();
