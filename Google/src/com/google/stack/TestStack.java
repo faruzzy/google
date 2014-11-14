@@ -3,7 +3,7 @@ package com.google.stack;
 public class TestStack {
 
 	public static void main(final String... args) {
-		System.out.println("testing stacks...");
+		System.out.println("testing stack...");
 		final boolean result = testPushingManyItems(createStack()) && testEmpty(createStack()) && testPushAndPop(createStack());
 		System.out.println(result ? "all tests passed" : "test failed");
 

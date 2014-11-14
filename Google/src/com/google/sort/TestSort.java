@@ -2,12 +2,10 @@ package com.google.sort;
 
 public class TestSort {
 
-	public static boolean isSorted(final SortingAlgorithm sortingAlgorithm) {
-		final int[] data = sortingAlgorithm.getData();
-		for (int i = 0; i < data.length - 1; ++i)
-			if (data[i + 1] < data[i])
-				return false;
-		return true;
+	public static void main(final String... args) {
+		System.out.println("testing sorts...");
+		final boolean result = testRepeats() && testSorts();
+		System.out.println(result ? "all tests passed" : "test failed");
 	}
 
 	public static int[] randomData(final int length) {
@@ -58,6 +56,14 @@ public class TestSort {
 	private static SortingAlgorithm[] instanceSortingAlgorithms(final int[] data) {
 		return new SortingAlgorithm[] { new InsertionSort(copy(data)), new QuickSort(copy(data)), new MergeSort(copy(data)),
 			new HeapSort(copy(data)) };
+	}
+
+	private static boolean isSorted(final SortingAlgorithm sortingAlgorithm) {
+		final int[] data = sortingAlgorithm.getData();
+		for (int i = 0; i < data.length - 1; ++i)
+			if (data[i + 1] < data[i])
+				return false;
+		return true;
 	}
 
 }
