@@ -56,6 +56,9 @@ public class Queue {
 	}
 
 	public int peek() {
+		if (front == back)
+			return -1;
+
 		return data[front];
 	}
 
