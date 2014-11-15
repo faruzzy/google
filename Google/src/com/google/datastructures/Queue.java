@@ -29,6 +29,11 @@ public class Queue {
 		System.out.println(queue.isEmpty());
 	}
 
+	public void clear() {
+		data = new int[INITIAL_CAPACITY];
+		front = back = 0;
+	}
+
 	public int dequeue() {
 		if (front == back)
 			return -1;

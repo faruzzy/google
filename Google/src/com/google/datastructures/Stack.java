@@ -12,6 +12,32 @@ public class Stack {
 		top = -1;
 	}
 
+	public static void main(final String... args) {
+		final Stack stack = new Stack();
+		stack.push(10);
+		stack.push(20);
+		stack.push(30);
+		System.out.println(stack.pop());
+		System.out.println(stack.pop());
+		stack.push(40);
+		System.out.println(stack.pop());
+		System.out.println(stack.pop());
+		System.out.println(stack.isEmpty());
+
+		for (int i = 0; i < 1000; ++i)
+			stack.push(i);
+		for (int i = 999; i > -1; --i)
+			if (stack.isEmpty() || stack.pop() != i)
+				System.out.println("OOPS " + i);
+
+		System.out.println(stack.isEmpty());
+	}
+
+	public void clear() {
+		data = new int[INITIAL_CAPACITY];
+		top = -1;
+	}
+
 	public int getSize() {
 		return top + 1;
 	}
@@ -51,27 +77,6 @@ public class Stack {
 		for (int i = 0; i < top; ++i)
 			newData[i] = data[i];
 		data = newData;
-	}
-	
-	public static void main(String... args) {
-		Stack stack = new Stack();
-		stack.push(10);
-		stack.push(20);
-		stack.push(30);
-		System.out.println(stack.pop());
-		System.out.println(stack.pop());
-		stack.push(40);
-		System.out.println(stack.pop());
-		System.out.println(stack.pop());
-		System.out.println(stack.isEmpty());
-		
-		for (int i = 0; i < 1000; ++i)
-			stack.push(i);
-		for (int i = 999; i > -1; --i)
-			if (stack.isEmpty() || stack.pop() != i)
-				System.out.println("OOPS " + i);
-		
-		System.out.println(stack.isEmpty());
 	}
 
 }
