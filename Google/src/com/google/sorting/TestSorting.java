@@ -2,6 +2,14 @@ package com.google.sorting;
 
 public class TestSorting {
 
+	@SuppressWarnings("unchecked")
+	public static <T extends Comparable<T>> boolean isSorted(final Comparable<T>[] data) {
+		for (int i = 1; i < data.length; ++i)
+			if (data[i - 1].compareTo((T) data[i]) > 0)
+				return false;
+		return true;
+	}
+
 	public static boolean isSorted(final int[] data) {
 		for (int i = 1; i < data.length; ++i)
 			if (data[i - 1] > data[i])

@@ -11,11 +11,6 @@ public class QuickSort {
 		quickSort(data);
 		System.out.println(Arrays.toString(data));
 		System.out.println(TestSorting.isSorted(data));
-
-		System.out.println("***");
-		final int[] a = { 5, 0, 1, 2, 3, 4, 9 };
-		partition(a, 0, a.length - 1, 0);
-		System.out.println(Arrays.toString(a));
 	}
 
 	public static void quickSort(final int[] data) {
