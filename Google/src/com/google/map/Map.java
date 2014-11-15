@@ -12,13 +12,13 @@ public class Map<K, V> {
 
 	private int capacity;
 
-	private HashNode<K, V>[] data;
+	private Node<K, V>[] data;
 	private int size;
 
 	@SuppressWarnings("unchecked")
 	public Map() {
 		capacity = 0;
-		data = new HashNode[PRIMES[capacity]];
+		data = new Node[PRIMES[capacity]];
 		size = 0;
 
 	}
@@ -36,7 +36,7 @@ public class Map<K, V> {
 
 	public void put(final K key, final V value) {
 		final int hash = key.hashCode() & data.length;
-		final HashNode<K, V> node = new HashNode<>(key, value);
+		final Node<K, V> node = new Node<>(key, value);
 		if (data[hash] == null)
 			++size;
 
@@ -51,7 +51,7 @@ public class Map<K, V> {
 		if (capacity < 0)
 			return;
 
-		data = new HashNode[PRIMES[newCapacity]];
+		data = new Node[PRIMES[newCapacity]];
 
 		capacity = newCapacity;
 	}

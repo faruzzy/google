@@ -1,6 +1,6 @@
 package com.google.linkedlist;
 
-public class DLLNode<T> extends SLLNode<T> {
+public class DLLNode<T> extends Node<T> {
 
 	private DLLNode<T> prev;
 

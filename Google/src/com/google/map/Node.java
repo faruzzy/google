@@ -1,11 +1,11 @@
 package com.google.map;
 
-public class HashNode<K, V> {
+public class Node<K, V> {
 
 	private final K key;
 	private final V value;
 
-	public HashNode(final K key, final V value) {
+	public Node(final K key, final V value) {
 		this.key = key;
 		this.value = value;
 	}

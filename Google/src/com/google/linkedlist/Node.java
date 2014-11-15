@@ -1,16 +1,16 @@
 package com.google.linkedlist;
 
-public class SLLNode<T> {
+public class Node<T> {
 
 	private final T value;
-	private SLLNode<T> next;
+	private Node<T> next;
 
-	public SLLNode(final T value) {
+	public Node(final T value) {
 		this.value = value;
 		next = null;
 	}
 
-	public SLLNode<T> getNext() {
+	public Node<T> getNext() {
 		return next;
 	}
 
@@ -22,7 +22,7 @@ public class SLLNode<T> {
 		return next != null;
 	}
 
-	public void setNext(final SLLNode<T> next) {
+	public void setNext(final Node<T> next) {
 		this.next = next;
 	}
 

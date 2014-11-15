@@ -2,8 +2,8 @@ package com.google.linkedlist;
 
 public class LinkedList<T> {
 
-	private SLLNode<T> head;
-	private SLLNode<T> tail;
+	private Node<T> head;
+	private Node<T> tail;
 	private int length;
 
 	public LinkedList() {
@@ -37,7 +37,7 @@ public class LinkedList<T> {
 	}
 
 	public void append(final T value) {
-		final SLLNode<T> node = new SLLNode<>(value);
+		final Node<T> node = new Node<>(value);
 		if (tail == null)
 			head = tail = node;
 		else {
@@ -60,7 +60,7 @@ public class LinkedList<T> {
 		if (index < 0 || index >= length)
 			throw new IndexOutOfBoundsException();
 
-		SLLNode<T> curr = head;
+		Node<T> curr = head;
 		for (int i = 0; i < index; ++i)
 			curr = curr.getNext();
 
@@ -77,10 +77,10 @@ public class LinkedList<T> {
 		else if (index == length)
 			append(value);
 		else if (index > 0 && index < length) {
-			SLLNode<T> curr = head;
+			Node<T> curr = head;
 			for (int i = 1; i < index; ++i)
 				curr = curr.getNext();
-			final SLLNode<T> node = new SLLNode<>(value);
+			final Node<T> node = new Node<>(value);
 			node.setNext(curr.getNext());
 			curr.setNext(node);
 			length++;
@@ -93,7 +93,7 @@ public class LinkedList<T> {
 	}
 
 	public void prepend(final T value) {
-		final SLLNode<T> node = new SLLNode<>(value);
+		final Node<T> node = new Node<>(value);
 		if (head == null)
 			head = tail = node;
 		else {
@@ -109,7 +109,7 @@ public class LinkedList<T> {
 
 		tail = head;
 		while (tail.hasNext()) {
-			final SLLNode<T> next = tail.getNext();
+			final Node<T> next = tail.getNext();
 			tail.setNext(next.getNext());
 			next.setNext(head);
 			head = next;
@@ -117,7 +117,7 @@ public class LinkedList<T> {
 	}
 
 	public void set(final T value, final int index) {
-		final SLLNode<T> node = new SLLNode<>(value);
+		final Node<T> node = new Node<>(value);
 
 		if (index == 0) {
 			node.setNext(head == null ? null : head.getNext());
@@ -134,7 +134,7 @@ public class LinkedList<T> {
 		builder.append('[');
 		builder.append(head);
 		if (head != null) {
-			SLLNode<T> curr = head.getNext();
+			Node<T> curr = head.getNext();
 			while (curr != null) {
 				builder.append(", ").append(curr);
 				curr = curr.getNext();
