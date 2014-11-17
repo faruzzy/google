@@ -4,11 +4,13 @@ public class GenericStack<T> {
 
 	private static final int INITIAL_CAPACITY = 16;
 
-	private Object[] data;
+	private T[] data;
 	private int top;
 
-	private GenericStack() {
-		data = new Object[INITIAL_CAPACITY];
+	public GenericStack() {
+		@SuppressWarnings("unchecked")
+		final T[] newData = (T[]) new Object[INITIAL_CAPACITY];
+		this.data = newData;
 		top = -1;
 	}
 
@@ -31,7 +33,9 @@ public class GenericStack<T> {
 	}
 
 	public void clear() {
-		data = new Object[INITIAL_CAPACITY];
+		@SuppressWarnings("unchecked")
+		final T[] newData = (T[]) new Object[INITIAL_CAPACITY];
+		data = newData;
 		top = -1;
 	}
 
@@ -43,18 +47,14 @@ public class GenericStack<T> {
 		if (top == -1 || data[top] == null)
 			return null;
 
-		@SuppressWarnings("unchecked")
-		final T value = (T) data[top];
-
-		return value;
+		return data[top];
 	}
 
 	public T pop() {
 		if (top == -1)
 			return null;
 
-		@SuppressWarnings("unchecked")
-		final T value = (T) data[top];
+		final T value = data[top];
 		data[top] = null;
 
 		if (top < data.length / 4)
@@ -76,7 +76,8 @@ public class GenericStack<T> {
 	}
 
 	private void resizeData(final int capactiy) {
-		final Object[] newData = new Object[capactiy];
+		@SuppressWarnings("unchecked")
+		final T[] newData = (T[]) new Object[capactiy];
 		for (int i = 0; i < top; ++i)
 			newData[i] = data[i];
 		data = newData;

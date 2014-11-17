@@ -4,13 +4,15 @@ public class GenericQueue<T> {
 
 	private static final int INITIAL_CAPACITY = 16;
 
-	private Object[] data;
+	private T[] data;
 	private int capacity;
 	private int front, length;
 
 	public GenericQueue() {
 		capacity = INITIAL_CAPACITY;
-		data = new Object[capacity];
+		@SuppressWarnings("unchecked")
+		final T[] newData = (T[]) new Object[capacity];
+		data = newData;
 		front = length = 0;
 	}
 
@@ -33,7 +35,9 @@ public class GenericQueue<T> {
 
 	public void clear() {
 		capacity = INITIAL_CAPACITY;
-		data = new Object[capacity];
+		@SuppressWarnings("unchecked")
+		final T[] newData = (T[]) new Object[capacity];
+		this.data = newData;
 		front = length = 0;
 	}
 
@@ -41,8 +45,7 @@ public class GenericQueue<T> {
 		if (length == 0)
 			return null;
 
-		@SuppressWarnings("unchecked")
-		final T value = (T) data[front];
+		final T value = data[front];
 		data[front] = null;
 
 		++front;
@@ -73,8 +76,7 @@ public class GenericQueue<T> {
 		if (length == 0)
 			return null;
 
-		@SuppressWarnings("unchecked")
-		final T value = (T) data[front];
+		final T value = data[front];
 		return value;
 	}
 
@@ -82,7 +84,8 @@ public class GenericQueue<T> {
 		if (newCapacity < INITIAL_CAPACITY)
 			return;
 
-		final Object[] newData = new Object[newCapacity];
+		@SuppressWarnings("unchecked")
+		final T[] newData = (T[]) new Object[newCapacity];
 		for (int i = 0; i < length; ++i)
 			newData[i] = data[(front + i) % capacity];
 		front = 0;

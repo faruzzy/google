@@ -7,6 +7,7 @@ public class HeapSort {
 	public static void heapSort(final int[] data) {
 		for (int i = 1; i < data.length; ++i)
 			bubbleUp(data, i);
+
 		for (int i = data.length - 1; i > 0; --i) {
 			swap(data, 0, i);
 			bubbleDown(data, i);
