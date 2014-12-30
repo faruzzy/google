@@ -47,6 +47,7 @@ public class TwoThreeTree<Key extends Comparable<Key>, Value> implements BinaryT
 		root.setRed(false);
 	}
 
+	@SuppressWarnings("unused")
 	private int findHeight(final RedBlackNode<Key, Value> node, final int height, final int level) {
 		if (node == null)
 			return height < level ? level : height;
